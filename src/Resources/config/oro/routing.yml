@@ -1,0 +1,4 @@
+payplug:
+    resource:     "@PayplugPaymentBundle/Controller/"
+    type:         annotation
+    prefix:       /payplug

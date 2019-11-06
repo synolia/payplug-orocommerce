@@ -1,0 +1,74 @@
+oro:
+    payment:
+        paymenttransaction:
+            types:
+                refund.label: Refund
+
+payplug:
+    alert:
+        live.message: This transaction was made in <b>LIVE</b> mode. This transaction <b>IS</b> effective.
+        test.message: This transaction was made in <b>TEST</b> mode. This transaction <b>IS NOT</b> effective.
+        refund.message: This transaction was totally or partially refund.
+
+    settings:
+        labels.label: 'Labels'
+        short_labels.label: 'Short Labels'
+        transport.label: 'Transport'
+        login.label: 'Login'
+        password.label: 'Password'
+        mode.label: 'Mode'
+        debug_mode.label: 'Mode Debug'
+        debug_mode.tooltip: 'Enable or disable debug mode'
+        login:
+            button.text: 'Login to PayPlug'
+            result:
+                success.message: 'You are now connected to your PayPlug account'
+                error.message: 'Bad credentials'
+                no_password.message: 'Password field cannot be empty'
+        logout:
+            button.text: 'Logout'
+            result:
+                success.message: 'You are now disconnected from your PayPlug account'
+        my_account.text: 'My PayPlug account'
+        no_account.text: 'No account?'
+        suscribe.text: 'Suscribe'
+
+    channel_type.label: 'PayPlug'
+    payment_method_message: 'PayPlug'
+
+    order:
+        action:
+            payment_informations.label: PayPlug informations
+            refund.label: Refund payment
+
+    api_response:
+        id.label: PayPlug ID
+        is_paid.label: Is payed
+        amount.label: Amount
+        amount_refunded.label: Amount refunded
+        paid_at.label: Paid at
+        3ds.label: 3D Secure
+        mode.label: Mode
+        card:
+            country.label: Country
+            brand.label: Brand
+            last4.label: Last 4 numbers
+
+    on_return:
+        processing_error.label: 'Error while processing the card.'
+        card_declined.label: 'The card has been rejected.'
+        insufficient_funds.label: 'Insufficient funds to cover the payment.'
+        3ds_declined.label: 'The 3-D secure code has been rejected.'
+        incorrect_number.label: 'The card number is incorrect.'
+        fraud_suspected.label: 'Payment rejected because a fraud has been detected.'
+        method_unsupported.label: 'The payment method is not supported (e.g. e-carte bleue).'
+        card_scheme_mismatch.label: 'The card number does not match with the selected brand.'
+        card_expiration_date_prior_to_last_installment_date.label: 'The card expiration date is prior to the last installment date.'
+        aborted.label: 'Payment has been aborted with the Abort a payment feature.'
+        timeout.label: 'The customer has not tried to pay and left the payment page.'
+        canceled.label: 'The customer has canceled payment and left the payment page.'
+
+    frontend:
+        alt:
+            logo_payplug: PayPlug logo
+            logo_schemes_payplug: Credit card logos
