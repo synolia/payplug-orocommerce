@@ -70,6 +70,7 @@ You should define :
 * The name of your payment rule (will only be displayed in the administration panel)
 * The order in which your rule should be placed compared to your other rules (1, 2, 3, 11, 23, ...)
 * The currency associated with the rule
+* Payment method configuration by adding PayPlug integration
 
 You can also (optional):
 * Tick "Stop Further Rule Processing", in which case the rules that should apply will not.
@@ -82,6 +83,7 @@ You can also (optional):
 You can obtain more information on a payment processed with PayPlug by clicking on the "Information" button on the payment line in the order recap.
 
 ![PayPlug Payment History](./images/payplug_order_payment_history.png)
+
 ![PayPlug Payment Informations](./images/payplug_order_payment_informations.png)
 
 ## 4 - Refund
