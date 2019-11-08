@@ -1,17 +1,10 @@
 {
-    "name": "synolia/oro-synolia_payplug",
+    "name": "payplug/payplug-orocommerce",
     "description": "Module PayPlug pour OroCommerce",
     "require": {
         "payplug/payplug-php": "^3.1",
         "oro/commerce": "3.1.*"
     },
-    "authors": [
-        {
-            "name": "Synolia",
-            "homepage": "https://www.synolia.com/",
-            "role": "Developer"
-        }
-    ],
     "repositories": {
         "oro": {
             "type": "composer",
