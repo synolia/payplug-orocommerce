@@ -263,15 +263,13 @@ class Gateway
 
     protected function getNotificationUrl(PaymentTransaction $paymentTransaction): string
     {
-        $routePath = $this->router->generate(
+        return $this->router->generate(
             'oro_payment_callback_notify',
             [
                 'accessIdentifier' => $paymentTransaction->getAccessIdentifier(),
                 'accessToken' => $paymentTransaction->getAccessToken(),
             ],
-            UrlGeneratorInterface::ABSOLUTE_PATH // ABSOLUTE_URL
+            UrlGeneratorInterface::ABSOLUTE_URL
         );
-
-        return "http://0b56b84e.ngrok.io" . $routePath; // TODO Remove
     }
 }
