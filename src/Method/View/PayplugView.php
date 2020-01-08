@@ -26,7 +26,9 @@ class PayplugView implements PaymentMethodViewInterface
      */
     public function getOptions(PaymentContextInterface $context)
     {
-        return [];
+        return [
+            'total_value' => $context->getTotal(),
+        ];
     }
 
     /**
