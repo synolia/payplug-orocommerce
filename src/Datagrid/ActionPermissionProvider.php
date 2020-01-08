@@ -19,7 +19,6 @@ class ActionPermissionProvider
         $this->paymentMethodProvider = $paymentMethodProvider;
     }
 
-
     public function getActionPermissions(ResultRecordInterface $record): array
     {
         $paymentMethod = $this->paymentMethodProvider->getPaymentMethod($record->getValue('paymentMethod'));

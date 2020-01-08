@@ -45,15 +45,6 @@ class PayplugSettingsType extends AbstractType
                 ]
             )
             ->add(
-                'login',
-                TextType::class,
-                [
-                    'label' => 'payplug.settings.login.label',
-                    'required' => true,
-                    'constraints' => [new NotBlank()]
-                ]
-            )
-            ->add(
                 'apiKeyTest',
                 HiddenType::class
             )
@@ -64,6 +55,17 @@ class PayplugSettingsType extends AbstractType
         ;
 
         $formModifier = function (FormInterface $form, PayplugSettings $payplugSettings = null) {
+            $form->add(
+                'login',
+                TextType::class,
+                [
+                    'label' => 'payplug.settings.login.label',
+                    'required' => true,
+                    'constraints' => [new NotBlank()],
+                    'disabled' => $payplugSettings->isConnected() ? true : false
+                ]
+            );
+
             if (!$payplugSettings->isConnected() && $payplugSettings->getId() !== null) {
                 $form->add(
                     'password',

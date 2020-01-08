@@ -109,9 +109,7 @@ define(function(require) {
 
             if (response.success) {
                 var actionInput = this.$form.find('input[name="input_action"]');
-                actionInput.val(JSON.stringify({
-                    redirectUrl: response.url
-                }));
+                actionInput.val('save_and_stay');
                 this.$form.trigger('submit');
             }
 

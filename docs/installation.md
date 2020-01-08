@@ -37,14 +37,14 @@ Open the System menu on the left or top of your screen (depending on the positio
 
 ![PayPlug Manage Integrations](./images/payplug_manage_integrations.png)
 
-On the integration page, create a new integration using the button "Create new integration"
+On the integration page, create a new integration using the button "Create integration"
 
 ![PayPlug Create Integrations](./images/payplug_create_integration.png)
 
 Fill out the mandatory information :
 * Name : The name of your module. This name will only be used in your back office but won't be displayed to your customers.
 * Label : The name displayed to your customers. It can be translated in every languages of your OroCommerce instance.
-* E-mail : Your PayPlug account email.
+* E-mail : Your PayPlug account login.
 
 ### 2.2 - Connect the module to your PayPlug account
 The second step is necessary to connect the PayPlug module to your PayPlug environment and activate the module in your shop.
@@ -63,14 +63,21 @@ Once connected, you can decide between 2 modes :
 The debug mode allows for more information to be recorded to the application logs.
 
 ### 2.4 - Create a payment rule
-This final step will let you define when to display the payment method in your shop.
+This final step will let you define when to display the payment method in your shop. You can access to Payment Rules
+configuration from the main menu: System > Payment Rules
 
-You should define :
+![PayPlug Manage Payment Rules](./images/payplug_manage_payment_rules.png)
+
+![PayPlug Create Payment Rule](./images/payplug_create_payment_rule.png)
+
+When you create your payment rule, you should define :
 * If your rule should be activated or not
 * The name of your payment rule (will only be displayed in the administration panel)
 * The order in which your rule should be placed compared to your other rules (1, 2, 3, 11, 23, ...)
-* The currency associated with the rule
-* Payment method configuration by adding PayPlug integration
+* The currency associated with the rule. Only EURO can be selected for PayPlug payment integration.
+* Payment method configuration by adding PayPlug integration.
+
+![PayPlug Add PayPlug Payment Method To Payment Rule](./images/payplug_add_payplug_method_to_payment_rule.png)
 
 You can also (optional):
 * Tick "Stop Further Rule Processing", in which case the rules that should apply will not.

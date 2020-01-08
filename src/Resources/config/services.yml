@@ -97,3 +97,10 @@ services:
         class: Payplug\Bundle\PaymentBundle\Service\RefundManager
         arguments:
             - '@doctrine.orm.entity_manager'
+
+    payplug.validator.payment_rule.currency_is_euro:
+        class: Payplug\Bundle\PaymentBundle\Validator\Constraints\CurrencyIsEuroValidator
+        arguments:
+            - '@oro_payment.payment_method.composite_provider'
+        tags:
+            - { name: validator.constraint_validator, alias: payplug.validator.payment_rule.currency_is_euro }

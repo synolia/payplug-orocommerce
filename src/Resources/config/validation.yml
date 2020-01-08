@@ -1,0 +1,3 @@
+Oro\Bundle\PaymentBundle\Entity\PaymentMethodsConfigsRule:
+    constraints:
+        -   Payplug\Bundle\PaymentBundle\Validator\Constraints\CurrencyIsEuro: ~
