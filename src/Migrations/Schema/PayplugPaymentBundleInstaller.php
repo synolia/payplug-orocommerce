@@ -57,8 +57,8 @@ class PayplugPaymentBundleInstaller implements Installation
         $table->addColumn('transport_id', 'integer', []);
         $table->addColumn('localized_value_id', 'integer', []);
         $table->setPrimaryKey(['transport_id', 'localized_value_id']);
-        $table->addUniqueIndex(['localized_value_id'], 'UNIQ_C176860AEB576E89');
-        $table->addIndex(['transport_id'], 'IDX_C176860A9909C13F', []);
+        $table->addIndex(['transport_id'], 'oro_payment_payplug_short_label_transport_id', []);
+        $table->addUniqueIndex(['localized_value_id'], 'oro_payment_payplug_short_label_localized_value_id', []);
     }
 
     /**
@@ -72,8 +72,8 @@ class PayplugPaymentBundleInstaller implements Installation
         $table->addColumn('transport_id', 'integer', []);
         $table->addColumn('localized_value_id', 'integer', []);
         $table->setPrimaryKey(['transport_id', 'localized_value_id']);
-        $table->addUniqueIndex(['localized_value_id'], 'UNIQ_FEB043D0EB576E89');
-        $table->addIndex(['transport_id'], 'IDX_FEB043D09909C13F', []);
+        $table->addIndex(['transport_id'], 'oro_payment_payplug_trans_label_transport_id', []);
+        $table->addUniqueIndex(['localized_value_id'], 'oro_payment_payplug_trans_label_localized_value_id', []);
     }
 
     /**

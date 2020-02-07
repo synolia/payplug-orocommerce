@@ -46,6 +46,8 @@ Fill out the mandatory information :
 * Label : The name displayed to your customers. It can be translated in every languages of your OroCommerce instance.
 * E-mail : Your PayPlug account login.
 
+Save the form to display the password field and the "Login to PayPlug" button
+
 ### 2.2 - Connect the module to your PayPlug account
 The second step is necessary to connect the PayPlug module to your PayPlug environment and activate the module in your shop.
 
@@ -71,7 +73,7 @@ configuration from the main menu: System > Payment Rules
 ![PayPlug Create Payment Rule](./images/payplug_create_payment_rule.png)
 
 When you create your payment rule, you should define :
-* If your rule should be activated or not
+* If your rule should be activated or not. To enable the payment rule, open the "All payment rules" page, click on the "..." icon and use the "check" icon.
 * The name of your payment rule (will only be displayed in the administration panel)
 * The order in which your rule should be placed compared to your other rules (1, 2, 3, 11, 23, ...)
 * The currency associated with the rule. Only EURO can be selected for PayPlug payment integration.
