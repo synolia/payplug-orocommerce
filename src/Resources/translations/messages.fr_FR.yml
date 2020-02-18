@@ -40,6 +40,12 @@ payplug:
         action:
             payment_informations.label: Informations PayPlug
             refund.label: Remboursement
+            refund.message: "Le remboursement a bien été effectué"
+
+    constraints:
+        payment_refund:
+            min_message: "Valeur minimum: {min}"
+            max_message: "Valeur maximum: {min}"
 
     api_response:
         id.label: ID PayPlug

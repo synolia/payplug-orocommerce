@@ -40,6 +40,12 @@ payplug:
         action:
             payment_informations.label: PayPlug informations
             refund.label: Refund payment
+            refund.message: "Transaction was successfully refund"
+
+    constraints:
+        payment_refund:
+            min_message: "This value should be {min} or more. PLOP"
+            max_message: "This value should be {max} or less. PLOP"
 
     api_response:
         id.label: PayPlug ID
