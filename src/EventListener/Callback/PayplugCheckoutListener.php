@@ -141,7 +141,7 @@ class PayplugCheckoutListener
         $paymentTransaction = $event->getPaymentTransaction();
 
         if (!$paymentTransaction) {
-            $this->logger->error('No payment transaction fund onReturn event');
+            $this->logger->error('No payment transaction fund onNotify event');
             return;
         }
 
@@ -149,7 +149,7 @@ class PayplugCheckoutListener
         $paymentMethod = $this->paymentMethodProvider->getPaymentMethod($paymentTransaction->getPaymentMethod());
 
         if (!$paymentMethod) {
-            $this->logger->error('No payment method fund onReturn event');
+            $this->logger->error('No payment method fund onNotify event');
             return;
         }
 

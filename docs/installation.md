@@ -7,7 +7,7 @@ To start the installation, browse to your project's root folder and update the a
 To do so, install the module using composer with the following command :
 
 ```sh
-composer require payplug/payplug --prefer-dist --update-no-dev
+composer require payplug/payplug-orocommerce --prefer-dist --update-no-dev
 ```
 
 Next, remove old cache:
@@ -44,7 +44,7 @@ On the integration page, create a new integration using the button "Create integ
 Fill out the mandatory information :
 * Name : The name of your module. This name will only be used in your back office but won't be displayed to your customers.
 * Label : The name displayed to your customers. It can be translated in every languages of your OroCommerce instance.
-* E-mail : Your PayPlug account login.
+* Login : Your PayPlug account e-mail.
 
 Save the form to display the password field and the "Login to PayPlug" button
 
