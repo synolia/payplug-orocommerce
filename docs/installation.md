@@ -10,12 +10,6 @@ To do so, install the module using composer with the following command :
 composer require payplug/payplug-orocommerce --prefer-dist --update-no-dev
 ```
 
-Next, remove old cache:
-
-```sh
-sudo rm -rf var/cache/prod
-```
-
 To complete the installation, execute the following command:
 
 ```sh
@@ -25,6 +19,19 @@ php bin/console oro:platform:update --force --timeout=0 --env=prod
 Finally, make sure to properly clean the cache:
 
 ```sh
+php bin/console cache:clear --env=prod
+```
+
+If it doesn't work, try to remove cache directory with this command:
+
+```sh
+sudo rm -rf var/cache/prod
+```
+
+And execute again:
+
+```sh
+php bin/console oro:platform:update --force --timeout=0 --env=prod
 php bin/console cache:clear --env=prod
 ```
 

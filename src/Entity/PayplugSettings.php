@@ -292,4 +292,9 @@ class PayplugSettings extends Transport
     {
         return !empty($this->apiKeyLive) || !empty($this->apiKeyTest);
     }
+
+    public function isLiveModeAvailable()
+    {
+        return !empty($this->apiKeyLive);
+    }
 }

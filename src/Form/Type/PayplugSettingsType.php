@@ -87,7 +87,12 @@ class PayplugSettingsType extends AbstractType
                             'Test' => PayplugSettingsConstant::MODE_TEST,
                             'Live' => PayplugSettingsConstant::MODE_LIVE,
                         ],
-                        'empty_data' => PayplugSettingsConstant::MODE_TEST
+                        'empty_data' => PayplugSettingsConstant::MODE_TEST,
+                        'choice_attr' => function($choice, $key, $value) use ($payplugSettings) {
+                            return !$payplugSettings->isLiveModeAvailable() && $value == PayplugSettingsConstant::MODE_LIVE ?
+                                ['disabled' => 'disabled'] : []
+                            ;
+                        },
                     ]
                 );
                 $form->add(

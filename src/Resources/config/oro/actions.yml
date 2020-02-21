@@ -83,5 +83,4 @@ operations:
                       '@equal': [$.result, true]
                   message: payplug.order.action.refund.message
                   type: 'success'
-            - '@debug_action': $.form.payplugAmount
             - '@refresh_grid': order-payment-transactions-grid
