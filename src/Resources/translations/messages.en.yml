@@ -44,8 +44,8 @@ payplug:
 
     constraints:
         payment_refund:
-            min_message: "This value should be {min} or more. PLOP"
-            max_message: "This value should be {max} or less. PLOP"
+            min_message: "This value should be {min} or more."
+            max_message: "This value should be {max} or less."
 
     api_response:
         id.label: PayPlug ID

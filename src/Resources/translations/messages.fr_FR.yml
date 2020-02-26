@@ -45,7 +45,7 @@ payplug:
     constraints:
         payment_refund:
             min_message: "Valeur minimum: {min}"
-            max_message: "Valeur maximum: {min}"
+            max_message: "Valeur maximum: {max}"
 
     api_response:
         id.label: ID PayPlug
