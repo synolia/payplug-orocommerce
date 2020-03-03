@@ -25,6 +25,11 @@ class Payplug implements PaymentMethodInterface
      */
     private $gateway;
 
+    /**
+     * @var float
+     */
+    protected $maximumRefundAmountCache = 0;
+
     public function __construct(PayplugConfigInterface $config, Gateway $gateway)
     {
         $this->config = $config;
@@ -90,7 +95,14 @@ class Payplug implements PaymentMethodInterface
 
     public function getMaximumRefundAmount(PaymentTransaction $paymentTransaction): float
     {
-        return $this->gateway->getMaximumRefundAmount($paymentTransaction->getReference(), $this->config);
+        if ('purchase' === $paymentTransaction->getAction()) {
+            return $this->maximumRefundAmountCache = $this->gateway->getMaximumRefundAmount(
+                $paymentTransaction->getReference(),
+                $this->config
+            );
+        }
+
+        return $this->maximumRefundAmountCache;
     }
 
     public function treatNotify()

@@ -61,7 +61,7 @@ operations:
                         required: true
                         constraints:
                             - NotBlank: ~
-                            - Range:
+                            - Payplug\Bundle\PaymentBundle\Validator\Constraints\LocalizedRange:
                                   min: $.minFormattedAmount
                                   max: $.maxFormattedAmount
                                   minMessage: $.minMessage

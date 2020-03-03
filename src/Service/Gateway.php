@@ -158,7 +158,7 @@ class Gateway
         $payplugClient = $this->initPayplugClientAndSetDebugModeForLogger($config);
 
         $this->logger->debug(__METHOD__ . ' BEGIN');
-        $amountToRefund = (int) ($amount * 100);
+        $amountToRefund = (int) round($amount * 100);
 
         $refund = null;
 
