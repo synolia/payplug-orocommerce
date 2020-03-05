@@ -1,0 +1,3 @@
+config:
+    paths:
+        'payplugpayment/js/app/components/payplug-checkout-component': 'bundles/payplugpayment/js/app/components/payplug-checkout-component.js'

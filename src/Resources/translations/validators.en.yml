@@ -1,0 +1,4 @@
+payplug:
+    constraints:
+        payment_rule:
+            euro_currency: "Only EURO (€) can be selected as currency"

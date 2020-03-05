@@ -1,0 +1,23 @@
+{% block _payment_methods_payplug_widget %}
+    <div class="{{ class_prefix }}-form__payment-methods">
+        <table class="grid">
+            <tr>
+                <td>
+                    {% set logo_schemes_url = 'bundles/payplugpayment/img/logos_schemes_default.png' %}
+                    {% if app.request.locale == 'it_IT' %}
+                        {% set logo_schemes_url = 'bundles/payplugpayment/img/logos_schemes_it.png' %}
+                    {% endif %}
+                    <img src="{{ asset(logo_schemes_url) }}"
+                         alt="{{ 'payplug.frontend.alt.logo_schemes_payplug'|trans }}"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    {% set options = {
+        totalValue: view.options.total_value
+    } %}
+    <div class="hidden"
+         data-page-component-module="payplugpayment/js/app/components/payplug-transition-button-component"
+         data-page-component-options="{{ options|json_encode }}">
+    </div>
+{% endblock %}

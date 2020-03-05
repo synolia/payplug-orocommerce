@@ -1,0 +1,2 @@
+bundles:
+    - PayplugPaymentBundle:Form:fields.html.twig

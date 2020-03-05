@@ -1,0 +1,7 @@
+synolia:
+    frontend:
+        payment_method:
+            checkout:
+                payplug:
+                    minimum_amount.label: Les paiements par carte sont limités à 0.99€ minimum par commande
+                    maximum_amount.label: Les paiements par carte sont limités à 20 000€ maximum par commande

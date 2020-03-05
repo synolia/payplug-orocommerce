@@ -1,0 +1,106 @@
+parameters:
+    payplug.method.identifier_prefix: 'payplug'
+
+services:
+    payplug.generator.payplug_config_identifier:
+        parent: oro_integration.generator.prefixed_identifier_generator
+        public: true
+        arguments:
+            - '%payplug.method.identifier_prefix%'
+
+    payplug.integration.channel:
+        class: Payplug\Bundle\PaymentBundle\Integration\PayplugChannelType
+        public: true
+        tags:
+            - { name: oro_integration.channel, type: payplug }
+
+    payplug.integration.transport:
+        class: Payplug\Bundle\PaymentBundle\Integration\PayplugTransport
+        public: false
+        tags:
+            - { name: oro_integration.transport, type: payplug, channel_type: payplug }
+
+    payplug.factory.payplug_config:
+        class: Payplug\Bundle\PaymentBundle\Method\Config\Factory\PayplugConfigFactory
+        public: false
+        arguments:
+            - '@oro_locale.helper.localization'
+            - '@payplug.generator.payplug_config_identifier'
+
+    payplug.payment_method.config.provider:
+        class: Payplug\Bundle\PaymentBundle\Method\Config\Provider\PayplugConfigProvider
+        arguments:
+            - '@doctrine'
+            - '@logger'
+            - '@payplug.factory.payplug_config'
+
+    payplug.factory.method_view.payplug:
+        class: Payplug\Bundle\PaymentBundle\Method\View\Factory\PayplugViewFactory
+        public: false
+        arguments:
+            - '@payplug.factory.payplug_config'
+
+    payplug.payment_method_view_provider.payplug:
+        class: Payplug\Bundle\PaymentBundle\Method\View\Provider\PayplugViewProvider
+        public: false
+        arguments:
+            - '@payplug.payment_method.config.provider'
+            - '@payplug.factory.method_view.payplug'
+        tags:
+            - { name: oro_payment.payment_method_view_provider }
+
+    payplug.service.gateway:
+        class: Payplug\Bundle\PaymentBundle\Service\Gateway
+        arguments:
+            - '@oro_entity.doctrine_helper'
+            - '@property_accessor'
+            - '@router'
+            - '@payplug.service.logger'
+
+    payplug.factory.method.payplug:
+        class: Payplug\Bundle\PaymentBundle\Method\Factory\PayplugPaymentMethodFactory
+        public: false
+        arguments:
+            - '@payplug.service.gateway'
+
+    payplug.payment_method_provider.payplug:
+        class: Payplug\Bundle\PaymentBundle\Method\Provider\PayplugMethodProvider
+        public: false
+        arguments:
+            - '@payplug.payment_method.config.provider'
+            - '@payplug.factory.method.payplug'
+        tags:
+            - { name: oro_payment.payment_method_provider }
+
+    payplug.datagrid.order_payment_transactions.action_permission_provider:
+        class: Payplug\Bundle\PaymentBundle\Datagrid\ActionPermissionProvider
+        arguments:
+            - '@oro_payment.payment_method.composite_provider'
+
+    payplug.service.logger:
+        class: Payplug\Bundle\PaymentBundle\Service\Logger
+        arguments:
+            - '@payplug.service.anonymizer'
+        calls:
+            - [setLogger, ['@logger']]
+
+    payplug.service.anonymizer:
+        class: Payplug\Bundle\PaymentBundle\Service\Anonymizer
+
+    payplug.handler.payment_transaction:
+        class: Payplug\Bundle\PaymentBundle\Handler\PaymentTransactionHandler
+        arguments:
+            - '@oro_payment.payment_method.composite_provider'
+            - "@payplug.service.refund_manager"
+
+    payplug.service.refund_manager:
+        class: Payplug\Bundle\PaymentBundle\Service\RefundManager
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
+    payplug.validator.payment_rule.currency_is_euro:
+        class: Payplug\Bundle\PaymentBundle\Validator\Constraints\CurrencyIsEuroValidator
+        arguments:
+            - '@oro_payment.payment_method.composite_provider'
+        tags:
+            - { name: validator.constraint_validator, alias: payplug.validator.payment_rule.currency_is_euro }

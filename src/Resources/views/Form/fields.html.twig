@@ -1,0 +1,47 @@
+{% block payplug_settings_widget %}
+    {{ form_widget(form) }}
+
+    {% if form.vars.value.id is not null %}
+        <div class="control-group control-group-button">
+            <div class="controls">
+                {% if form.vars.data.isConnected %}
+                    <button type="button"
+                            class="btn btn-primary"
+                            data-page-component-module="payplugpayment/js/app/components/payplug-connection-component"
+                            data-page-component-options="{{ {
+                                'formSelector': '[name="oro_integration_channel_form"]',
+                                'backendUrl': path('payplug_logout', {'channelId': form.vars.value.channel.id })
+                            }|json_encode }}"
+                    >
+                        {{ 'payplug.settings.logout.button.text'|trans }}
+                    </button>
+                {% else %}
+                    <button type="button"
+                            class="btn btn-primary"
+                            data-page-component-module="payplugpayment/js/app/components/payplug-connection-component"
+                            data-page-component-options="{{ {
+                                'formSelector': '[name="oro_integration_channel_form"]',
+                                'backendUrl': path('payplug_login', {'channelId': form.vars.value.channel.id })
+                            }|json_encode }}"
+                    >
+                        {{ 'payplug.settings.login.button.text'|trans }}
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+        <div class="control-group control-group-button">
+            <div class="controls">
+                {% if form.vars.data.isConnected %}
+                    <p>
+                        <a href="https://portal.payplug.com/login" target="_blank">{{ 'payplug.settings.my_account.text'|trans }}</a>
+                    </p>
+                {% else %}
+                    <p>
+                        {{ 'payplug.settings.no_account.text'|trans }}
+                        <a href="https://portal.payplug.com/signup" target="_blank">{{ 'payplug.settings.suscribe.text'|trans }}</a>
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

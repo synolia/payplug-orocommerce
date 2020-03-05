@@ -1,0 +1,4 @@
+config:
+    paths:
+        'payplugpayment/js/app/components/payplug-connection-component': 'bundles/payplugpayment/js/app/components/payplug-connection-component.js'
+        'payplugpayment/js/app/components/payplug-transition-button-component': 'bundles/payplugpayment/js/app/components/payplug-transition-button-component.js'

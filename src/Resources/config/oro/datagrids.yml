@@ -1,0 +1,18 @@
+datagrids:
+    order-payment-transactions-grid:
+        properties:
+            payplug_payment_transaction_informations_link:
+                type: url
+                route: payplug_payment_transaction_info
+                params: { paymentTransactionId: id }
+        actions:
+            informations:
+                type: dialog
+                label: payplug.order.action.payment_informations.label
+                link:  payplug_payment_transaction_informations_link
+                icon: info-circle
+                widgetOptions:
+                    options:
+                        dialogOptions:
+                            title: "@translator->trans(payplug.order.action.payment_informations.label)"
+        action_configuration: ['@payplug.datagrid.order_payment_transactions.action_permission_provider', "getActionPermissions"]

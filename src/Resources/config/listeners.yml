@@ -1,0 +1,13 @@
+services:
+    payplug.event_listener.callback.checkout_listener:
+        class: Payplug\Bundle\PaymentBundle\EventListener\Callback\PayplugCheckoutListener
+        lazy: true
+        tags:
+            - { name: kernel.event_listener, event: oro_payment.callback.return, method: onReturn, priority: 20 }
+            - { name: kernel.event_listener, event: oro_payment.callback.error, method: onError, priority: 20 }
+            - { name: kernel.event_listener, event: oro_payment.callback.notify, method: onNotify, priority: 20 }
+        arguments:
+            - '@oro_payment.payment_method.composite_provider'
+            - '@payplug.service.refund_manager'
+            - '@session'
+            - '@payplug.service.logger'
