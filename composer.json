@@ -1,6 +1,6 @@
 {
-    "name": "payplug/payplug-orocommerce",
-    "description": "Module PayPlug pour OroCommerce",
+    "name": "synolia/payplug-orocommerce",
+    "description": "Fork du Module PayPlug pour OroCommerce",
     "require": {
         "payplug/payplug-php": "^3.1",
         "oro/commerce": "3.1.*"
