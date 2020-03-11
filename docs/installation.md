@@ -1,4 +1,4 @@
-# How to install and configure the PayPlug module v2 for OroCommerce 3.1 ?
+# How to install and configure the PayPlug module for OroCommerce 3.1
 
 ## 1 - Module installation
 The installation is exclusively done using the OroCommerce application console.
@@ -10,6 +10,12 @@ To do so, install the module using composer with the following command :
 composer require payplug/payplug-orocommerce --prefer-dist --update-no-dev
 ```
 
+Remove cache directory with this command:
+
+```sh
+sudo rm -rf var/cache/prod
+```
+
 To complete the installation, execute the following command:
 
 ```sh
@@ -19,19 +25,6 @@ php bin/console oro:platform:update --force --timeout=0 --env=prod
 Finally, make sure to properly clean the cache:
 
 ```sh
-php bin/console cache:clear --env=prod
-```
-
-If it doesn't work, try to remove cache directory with this command:
-
-```sh
-sudo rm -rf var/cache/prod
-```
-
-And execute again:
-
-```sh
-php bin/console oro:platform:update --force --timeout=0 --env=prod
 php bin/console cache:clear --env=prod
 ```
 
@@ -62,7 +55,7 @@ The second step is necessary to connect the PayPlug module to your PayPlug envir
 
 Fill in your login and password in the dedicated fields then click on "Connect". Upon success, your API keys are passed to the module.
 
-### 2.3 - Test and live modes
+### 2.3 - TEST and LIVE modes
 Once connected, you can decide between 2 modes :
 * TEST mode : Payments and refunds will be faked for testing purposes.
 * LIVE mode : Payments and refunds will be processed. This is the mode that you should use in production.
