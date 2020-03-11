@@ -18,7 +18,7 @@ class PaymentTransactionController extends Controller
      */
     public function infoAction(PaymentTransaction $paymentTransaction)
     {
-        $paymentMethod = $this->get('oro_payment.payment_method.composite_provider')->getPaymentMethod(
+        $paymentMethod = $this->get('payplug.payment_method_provider.payplug')->getPaymentMethod(
             $paymentTransaction->getPaymentMethod()
         );
 
