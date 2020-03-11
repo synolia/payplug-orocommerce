@@ -75,7 +75,7 @@ services:
     payplug.datagrid.order_payment_transactions.action_permission_provider:
         class: Payplug\Bundle\PaymentBundle\Datagrid\ActionPermissionProvider
         arguments:
-            - '@oro_payment.payment_method.composite_provider'
+            - '@payplug.payment_method_provider.payplug'
 
     payplug.service.logger:
         class: Payplug\Bundle\PaymentBundle\Service\Logger
@@ -90,7 +90,7 @@ services:
     payplug.handler.payment_transaction:
         class: Payplug\Bundle\PaymentBundle\Handler\PaymentTransactionHandler
         arguments:
-            - '@oro_payment.payment_method.composite_provider'
+            - '@payplug.payment_method_provider.payplug'
             - "@payplug.service.refund_manager"
 
     payplug.service.refund_manager:
@@ -101,6 +101,6 @@ services:
     payplug.validator.payment_rule.currency_is_euro:
         class: Payplug\Bundle\PaymentBundle\Validator\Constraints\CurrencyIsEuroValidator
         arguments:
-            - '@oro_payment.payment_method.composite_provider'
+            - '@payplug.payment_method_provider.payplug'
         tags:
             - { name: validator.constraint_validator, alias: payplug.validator.payment_rule.currency_is_euro }

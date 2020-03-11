@@ -9,7 +9,7 @@ operations:
         order: 50
         preactions:
             - '@call_service_method':
-                  service: oro_payment.payment_method.composite_provider
+                  service: payplug.payment_method_provider.payplug
                   method: getPaymentMethod
                   method_parameters: [$.data.paymentMethod]
                   attribute: $.paymentMethod

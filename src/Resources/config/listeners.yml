@@ -7,7 +7,7 @@ services:
             - { name: kernel.event_listener, event: oro_payment.callback.error, method: onError, priority: 20 }
             - { name: kernel.event_listener, event: oro_payment.callback.notify, method: onNotify, priority: 20 }
         arguments:
-            - '@oro_payment.payment_method.composite_provider'
+            - '@payplug.payment_method_provider.payplug'
             - '@payplug.service.refund_manager'
             - '@session'
             - '@payplug.service.logger'
