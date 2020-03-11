@@ -25,6 +25,8 @@ use Symfony\Component\Routing\RouterInterface;
 
 class Gateway
 {
+    const FIRST_NAME_LAST_NAME_MAX_LENGTH = 100;
+
     /**
      * @var DoctrineHelper
      */
@@ -229,8 +231,8 @@ class Gateway
 
         $data = [
             "email" => $this->propertyAccessor->getValue($entity, 'email'),
-            "first_name" => $address->getFirstName(),
-            "last_name" => $address->getLastName(),
+            "first_name" => $this->getNamesValue($address->getFirstName(), $address),
+            "last_name" => $this->getNamesValue($address->getLastName(), $address),
             "address1" => $address->getStreet(),
             "address2" => $address->getStreet2(),
             "city" => $address->getCity(),
@@ -271,5 +273,14 @@ class Gateway
             ],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
+    }
+
+    private function getNamesValue(?string $value, AbstractAddress $address)
+    {
+        if (empty($value)) {
+            $value =  $address->getOrganization();
+        }
+
+        return substr($value, 0, self::FIRST_NAME_LAST_NAME_MAX_LENGTH);
     }
 }
