@@ -10,6 +10,7 @@ use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 use Payplug\Authentication;
 use Payplug\Bundle\PaymentBundle\Constant\PayplugSettingsConstant;
 use Payplug\Bundle\PaymentBundle\Method\Config\PayplugConfigInterface;
+use Payplug\Exception\HttpException;
 use Payplug\Exception\PayplugException;
 use Payplug\Notification;
 use Payplug\Payment;
@@ -145,8 +146,10 @@ class Gateway
 
         try {
             $payment = Payment::create($data, $payplugClient);
+        } catch (HttpException $exception) {
+            $this->logger->error('PayPlug HttpException catched:' . $exception->getHttpResponse());
         } catch (\Exception $exception) {
-            $this->logger->error('PayPlug catched Exception:' . $exception->getHttpResponse());
+            $this->logger->error('PayPlug Exception catched:' . $exception->getMessage());
         }
 
         $this->logger->debug('Payment reference is ' . $payment->id);
