@@ -142,7 +142,12 @@ class Gateway
         ];
 
         $this->logger->debug('Payment::create from data ' . $this->logger->anonymizeAndJsonEncodeArray($data));
-        $payment = Payment::create($data, $payplugClient);
+
+        try {
+            $payment = Payment::create($data, $payplugClient);
+        } catch (\Exception $exception) {
+            $this->logger->error('PayPlug catched Exception:' . $exception->getHttpResponse());
+        }
 
         $this->logger->debug('Payment reference is ' . $payment->id);
         $this->logger->debug('Payment url is ' . $payment->hosted_payment->payment_url);
