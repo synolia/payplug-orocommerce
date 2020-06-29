@@ -6,6 +6,7 @@ define(function(require) {
     var messenger = require('oroui/js/messenger');
     var __ = require('orotranslation/js/translator');
     var BaseComponent = require('oroui/js/app/components/base/component');
+    var _ = require('underscore');
 
     PayplugTransitionButtonComponent = BaseComponent.extend({
         options: {
