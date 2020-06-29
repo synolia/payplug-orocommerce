@@ -7,7 +7,7 @@
                 {% if form.vars.data.isConnected %}
                     <button type="button"
                             class="btn btn-primary"
-                            data-page-component-module="payplugpayment/js/app/components/payplug-connection-component"
+                            data-page-component-module="payplugpayment-payplug-connection-component"
                             data-page-component-options="{{ {
                                 'formSelector': '[name="oro_integration_channel_form"]',
                                 'backendUrl': path('payplug_logout', {'channelId': form.vars.value.channel.id })
@@ -18,7 +18,7 @@
                 {% else %}
                     <button type="button"
                             class="btn btn-primary"
-                            data-page-component-module="payplugpayment/js/app/components/payplug-connection-component"
+                            data-page-component-module="payplugpayment-payplug-connection-component"
                             data-page-component-options="{{ {
                                 'formSelector': '[name="oro_integration_channel_form"]',
                                 'backendUrl': path('payplug_login', {'channelId': form.vars.value.channel.id })

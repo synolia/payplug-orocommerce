@@ -1,0 +1,7 @@
+aliases:
+    payplugpayment-payplug-checkout-component$: payplugpayment/js/app/components/payplug-checkout-component
+    payplugpayment-payplug-transition-button-component$: payplugpayment/js/app/components/payplug-transition-button-component
+dynamic-imports:
+    payplugpayment:
+        - payplugpayment-payplug-checkout-component
+        - payplugpayment-payplug-transition-button-component

@@ -51,6 +51,7 @@ services:
 
     payplug.service.gateway:
         class: Payplug\Bundle\PaymentBundle\Service\Gateway
+        public: true
         arguments:
             - '@oro_entity.doctrine_helper'
             - '@property_accessor'

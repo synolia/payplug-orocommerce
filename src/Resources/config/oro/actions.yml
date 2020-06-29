@@ -40,7 +40,7 @@ operations:
                       '{max}': $.maxFormattedAmount
         preconditions:
             '@and':
-                - '@equal': [$.data.entity_class, '%oro_order.entity.order.class%']
+                - '@equal': [$.data.entity_class, 'Oro\Bundle\OrderBundle\Entity\Order']
                 - '@equal': [$.data.action, 'purchase']
                 - '@equal': [$.data.active, true]
                 - '@equal': [$.data.successful, true]

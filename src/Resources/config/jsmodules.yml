@@ -1,0 +1,5 @@
+aliases:
+    payplugpayment-payplug-connection-component$: payplugpayment/js/app/components/payplug-connection-component
+dynamic-imports:
+    payplugpayment:
+        - payplugpayment-payplug-connection-component
