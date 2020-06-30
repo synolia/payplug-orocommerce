@@ -66,7 +66,7 @@ services:
 
     payplug.payment_method_provider.payplug:
         class: Payplug\Bundle\PaymentBundle\Method\Provider\PayplugMethodProvider
-        public: false
+        public: true
         arguments:
             - '@payplug.payment_method.config.provider'
             - '@payplug.factory.method.payplug'
@@ -75,6 +75,7 @@ services:
 
     payplug.datagrid.order_payment_transactions.action_permission_provider:
         class: Payplug\Bundle\PaymentBundle\Datagrid\ActionPermissionProvider
+        public: true
         arguments:
             - '@payplug.payment_method_provider.payplug'
 
@@ -90,6 +91,7 @@ services:
 
     payplug.handler.payment_transaction:
         class: Payplug\Bundle\PaymentBundle\Handler\PaymentTransactionHandler
+        public: true
         arguments:
             - '@payplug.payment_method_provider.payplug'
             - "@payplug.service.refund_manager"
