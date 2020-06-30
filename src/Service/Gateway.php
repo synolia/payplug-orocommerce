@@ -252,6 +252,10 @@ class Gateway
             $data["delivery_type"] = "BILLING";
         }
 
+        $data = array_map(function($value) {
+            return empty($value) ? null : $value;
+        }, $data);
+
         return $data;
     }
 
