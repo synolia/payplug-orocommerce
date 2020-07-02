@@ -16,7 +16,7 @@ operations:
             - '@call_method':
                   conditions:
                       '@and':
-                          -   '@instanceof': [$.paymentMethod, 'Payplug\Bundle\PaymentBundle\Method\Payplug']
+                          -   '@instanceof': [$.paymentMethod, Payplug\Bundle\PaymentBundle\Method\Payplug]
                   object: $.paymentMethod
                   method: getMaximumRefundAmount
                   method_parameters: [$.data]
@@ -48,7 +48,7 @@ operations:
                 - '@equal': [$.data.active, true]
                 - '@equal': [$.data.successful, true]
                 - '@not_empty': $.paymentMethod
-                - '@instanceof': [$.paymentMethod, 'Payplug\Bundle\PaymentBundle\Method\Payplug']
+                - '@instanceof': [$.paymentMethod, Payplug\Bundle\PaymentBundle\Method\Payplug]
         attributes:
             payplugAmount:
                 label: Amount

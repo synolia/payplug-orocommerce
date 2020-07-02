@@ -42,7 +42,7 @@ class ActionPermissionProvider
         }
 
         return [
-            'informations' => $displayInformationsButton,
+            'informations' => $displayInformationsButton
         ];
     }
 }
