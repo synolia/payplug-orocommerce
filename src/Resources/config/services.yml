@@ -78,6 +78,7 @@ services:
         public: true
         arguments:
             - '@payplug.payment_method_provider.payplug'
+            - '@doctrine.orm.entity_manager'
 
     payplug.service.logger:
         class: Payplug\Bundle\PaymentBundle\Service\Logger
