@@ -22,12 +22,12 @@ operations:
                   method_parameters: [$.data]
                   attribute: $.maximumAmount
             - '@call_service_method':
-                  service: oro_currency.formatter.money_value_type
+                  service: payplug.formatter.money_value_type
                   method: format
                   method_parameters: [0.1]
                   attribute: $.minFormattedAmount
             - '@call_service_method':
-                  service: oro_currency.formatter.money_value_type
+                  service: payplug.formatter.money_value_type
                   method: format
                   method_parameters: [$.maximumAmount]
                   attribute: $.maxFormattedAmount
