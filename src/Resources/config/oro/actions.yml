@@ -14,17 +14,20 @@ operations:
                   method_parameters: [$.data.paymentMethod]
                   attribute: $.paymentMethod
             - '@call_method':
+                  conditions:
+                      '@and':
+                          -   '@instanceof': [$.paymentMethod, Payplug\Bundle\PaymentBundle\Method\Payplug]
                   object: $.paymentMethod
                   method: getMaximumRefundAmount
                   method_parameters: [$.data]
                   attribute: $.maximumAmount
             - '@call_service_method':
-                  service: oro_currency.formatter.money_value_type
+                  service: payplug.formatter.money_value_type
                   method: format
                   method_parameters: [0.1]
                   attribute: $.minFormattedAmount
             - '@call_service_method':
-                  service: oro_currency.formatter.money_value_type
+                  service: payplug.formatter.money_value_type
                   method: format
                   method_parameters: [$.maximumAmount]
                   attribute: $.maxFormattedAmount
@@ -40,7 +43,7 @@ operations:
                       '{max}': $.maxFormattedAmount
         preconditions:
             '@and':
-                - '@equal': [$.data.entity_class, '%oro_order.entity.order.class%']
+                - '@equal': [$.data.entity_class, 'Oro\Bundle\OrderBundle\Entity\Order']
                 - '@equal': [$.data.action, 'purchase']
                 - '@equal': [$.data.active, true]
                 - '@equal': [$.data.successful, true]
