@@ -7,9 +7,11 @@ use Oro\Bundle\AddressBundle\Entity\AddressType;
 use Oro\Bundle\EntityBundle\ORM\DoctrineHelper;
 use Oro\Bundle\OrderBundle\Entity\Order;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
+use Oro\Bundle\PlatformBundle\Composer\VersionHelper;
 use Payplug\Authentication;
 use Payplug\Bundle\PaymentBundle\Constant\PayplugSettingsConstant;
 use Payplug\Bundle\PaymentBundle\Method\Config\PayplugConfigInterface;
+use Payplug\Core\HttpClient;
 use Payplug\Exception\HttpException;
 use Payplug\Exception\PayplugException;
 use Payplug\Notification;
@@ -27,6 +29,7 @@ use Symfony\Component\Routing\RouterInterface;
 class Gateway
 {
     const FIRST_NAME_LAST_NAME_MAX_LENGTH = 100;
+    const USER_AGENT_PRODUCT_NAME = 'PayPlug-OroCommerce';
 
     /**
      * @var DoctrineHelper
@@ -48,16 +51,23 @@ class Gateway
      */
     private $logger;
 
+    /**
+     * @var VersionHelper
+     */
+    private $versionHelper;
+
     public function __construct(
         DoctrineHelper $doctrineHelper,
         PropertyAccessor $propertyAccessor,
         RouterInterface $router,
-        Logger $logger
+        Logger $logger,
+        VersionHelper $versionHelper
     ) {
         $this->doctrineHelper = $doctrineHelper;
         $this->propertyAccessor = $propertyAccessor;
         $this->router = $router;
         $this->logger = $logger;
+        $this->versionHelper = $versionHelper;
     }
 
 
@@ -192,13 +202,20 @@ class Gateway
         switch ($config->getMode()) {
             case PayplugSettingsConstant::MODE_LIVE:
                 $this->logger->debug('Payplug is in LIVE mode');
-                return Payplug::init(['secretKey' => $config->getApiKeyLive()]);
+                $client = Payplug::init(['secretKey' => $config->getApiKeyLive()]);
 
             case PayplugSettingsConstant::MODE_TEST:
             default:
                 $this->logger->debug('Payplug is in TEST mode');
-                return Payplug::init(['secretKey' => $config->getApiKeyTest()]);
+                $client =  Payplug::init(['secretKey' => $config->getApiKeyTest()]);
         }
+
+        HttpClient::addDefaultUserAgentProduct(
+            self::USER_AGENT_PRODUCT_NAME,
+            $this->versionHelper->getVersion()
+        );
+
+        return $client;
     }
 
     public function getAddressValues(string $type, PaymentTransaction $paymentTransaction): array
