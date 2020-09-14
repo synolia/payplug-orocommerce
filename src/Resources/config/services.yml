@@ -57,6 +57,7 @@ services:
             - '@property_accessor'
             - '@router'
             - '@payplug.service.logger'
+            - '@oro_platform.composer.version_helper'
 
     payplug.factory.method.payplug:
         class: Payplug\Bundle\PaymentBundle\Method\Factory\PayplugPaymentMethodFactory
