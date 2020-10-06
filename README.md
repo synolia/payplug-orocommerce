@@ -19,7 +19,7 @@ sudo rm -rf var/cache/prod
 To complete the installation, execute the following command:
 
 ```sh
-php bin/console oro:platform:update --force --timeout=0 --env=prod
+php bin/console oro:platform:update --force --timeout=0 --skip-translations --skip-download-translations --skip-search-reindexation --env=prod
 ```
 
 Finally, make sure to properly clean the cache:
