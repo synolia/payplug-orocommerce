@@ -203,11 +203,13 @@ class Gateway
             case PayplugSettingsConstant::MODE_LIVE:
                 $this->logger->debug('Payplug is in LIVE mode');
                 $client = Payplug::init(['secretKey' => $config->getApiKeyLive()]);
+                break;
 
             case PayplugSettingsConstant::MODE_TEST:
             default:
                 $this->logger->debug('Payplug is in TEST mode');
                 $client =  Payplug::init(['secretKey' => $config->getApiKeyTest()]);
+                break;
         }
 
         HttpClient::addDefaultUserAgentProduct(
