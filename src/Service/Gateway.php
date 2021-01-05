@@ -158,7 +158,7 @@ class Gateway
             ]
         ];
 
-        $this->logger->error('Payment::create from data ' . $this->logger->anonymizeAndJsonEncodeArray($data));
+        $this->logger->debug('Payment::create from data ' . $this->logger->anonymizeAndJsonEncodeArray($data));
 
         try {
             $payment = Payment::create($data, $payplugClient);
@@ -199,7 +199,7 @@ class Gateway
         ];
 
         try {
-            $refund = Refund::create($paymentTransaction->getReference(), ['amount' => $amountToRefund], $payplugClient);
+            $refund = Refund::create($paymentTransaction->getReference(), $data, $payplugClient);
         } catch (PayplugException $exception) {
             $this->logger->debug($exception->getHttpResponse());
             throw new \Exception('Refund action cannot be performed');
