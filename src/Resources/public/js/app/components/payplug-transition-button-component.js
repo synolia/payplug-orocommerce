@@ -42,22 +42,24 @@ define(function(require) {
          * @inheritDoc
          */
         beforeTransit: function(eventData) {
-            if (this.options.maxAmount <= (this.options.totalValue * 100)) {
-                eventData.stopped = true;
+            if (~eventData.data.paymentMethod.indexOf("payplug")) {
+                if (this.options.maxAmount <= (this.options.totalValue * 100)) {
+                    eventData.stopped = true;
 
-                messenger.notificationFlashMessage(
-                    'warning',
-                    __('synolia.frontend.payment_method.checkout.payplug.maximum_amount.label')
-                );
-            }
+                    messenger.notificationFlashMessage(
+                        'warning',
+                        __('synolia.frontend.payment_method.checkout.payplug.maximum_amount.label')
+                    );
+                }
 
-            if (this.options.minAmount >= (this.options.totalValue * 100)) {
-                eventData.stopped = true;
+                if (this.options.minAmount >= (this.options.totalValue * 100)) {
+                    eventData.stopped = true;
 
-                messenger.notificationFlashMessage(
-                    'warning',
-                    __('synolia.frontend.payment_method.checkout.payplug.minimum_amount.label')
-                );
+                    messenger.notificationFlashMessage(
+                        'warning',
+                        __('synolia.frontend.payment_method.checkout.payplug.minimum_amount.label')
+                    );
+                }
             }
         },
     });
