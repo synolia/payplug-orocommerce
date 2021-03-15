@@ -10,7 +10,7 @@ use Payplug\Bundle\PaymentBundle\Method\View\Provider\PayplugViewProvider;
 
 class PayplugViewProviderTest extends AbstractMethodViewProviderTest
 {
-    public function setUp()
+    protected function setUp(): void
     {
         $this->factory = $this->createMock(PayplugViewFactoryInterface::class);
         $this->configProvider = $this->createMock(PayplugConfigProviderInterface::class);

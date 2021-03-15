@@ -32,7 +32,7 @@ class PayplugConfigFactoryTest extends \PHPUnit\Framework\TestCase
      */
     protected $payplugConfigFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->localizationHelper = $this->createMock(LocalizationHelper::class);
         $this->identifierGenerator = $this->createMock(IntegrationIdentifierGeneratorInterface::class);

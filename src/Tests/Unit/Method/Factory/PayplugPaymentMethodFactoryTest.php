@@ -19,7 +19,7 @@ class PayplugPaymentMethodFactoryTest extends \PHPUnit\Framework\TestCase
      */
     private $factory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->gateway = $this->createMock(Gateway::class);
         $this->factory = new PayplugPaymentMethodFactory($this->gateway);

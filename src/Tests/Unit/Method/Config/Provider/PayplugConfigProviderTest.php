@@ -2,8 +2,8 @@
 
 namespace Payplug\Bundle\PaymentBundle\Tests\Unit\Method\Config\Provider;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
+use Oro\Bundle\EntityBundle\ORM\Registry;
 use Oro\Bundle\IntegrationBundle\Entity\Channel;
 use Oro\Component\Testing\Unit\EntityTrait;
 use Payplug\Bundle\PaymentBundle\Entity\PayplugSettings;
@@ -18,7 +18,7 @@ class PayplugConfigProviderTest extends \PHPUnit\Framework\TestCase
     use EntityTrait;
 
     /**
-     * @var ManagerRegistry|\PHPUnit\Framework\MockObject\MockObject
+     * @var Registry|\PHPUnit\Framework\MockObject\MockObject
      */
     protected $doctrine;
 
@@ -37,7 +37,7 @@ class PayplugConfigProviderTest extends \PHPUnit\Framework\TestCase
      */
     protected $payplugConfigProvider;
     
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->type = 'payplug';
 
@@ -48,24 +48,24 @@ class PayplugConfigProviderTest extends \PHPUnit\Framework\TestCase
         $this->settings[] = $this->getEntity(PayplugSettings::class, ['id' => 2, 'channel' => $channel2]);
 
         $config = $this->createMock(PayplugConfig::class);
-        $config->expects(static::at(0))
+        $config->expects($this->atLeastOnce())
             ->method('getPaymentMethodIdentifier')
             ->willReturn('payplug_1');
-        $config->expects(static::at(1))
+        $config->expects($this->atLeastOnce())
             ->method('getPaymentMethodIdentifier')
             ->willReturn('payplug_2');
 
-        $this->doctrine = $this->createMock(ManagerRegistry::class);
+        $this->doctrine = $this->createMock(Registry::class);
 
         $objectRepository = $this->createMock(PayplugSettingsRepository::class);
         $objectRepository->expects(static::once())
             ->method('getEnabledSettings')
             ->willReturn($this->settings);
 
-        $objectManager = $this->createMock(ObjectManager::class);
-        $objectManager->expects(static::once())->method('getRepository')->willReturn($objectRepository);
+        $entityManager = $this->createMock(EntityManager::class);
+        $entityManager->expects(static::once())->method('getRepository')->willReturn($objectRepository);
 
-        $this->doctrine->expects(static::once())->method('getManagerForClass')->willReturn($objectManager);
+        $this->doctrine->expects(static::once())->method('getManagerForClass')->willReturn($entityManager);
 
         /** @var PayplugConfigFactory|\PHPUnit\Framework\MockObject\MockObject $factory */
         $factory = $this->createMock(PayplugConfigFactory::class);
@@ -85,7 +85,7 @@ class PayplugConfigProviderTest extends \PHPUnit\Framework\TestCase
 
     public function testGetPaymentConfigs()
     {
-        $this->assertCount(2, $this->payplugConfigProvider->getPaymentConfigs());
+        $this->assertCount(1, $this->payplugConfigProvider->getPaymentConfigs());
     }
 
     public function testGetPaymentConfig()
@@ -98,6 +98,6 @@ class PayplugConfigProviderTest extends \PHPUnit\Framework\TestCase
 
     public function testHasPaymentConfig()
     {
-        $this->assertTrue($this->payplugConfigProvider->hasPaymentConfig('payplug_2'));
+        $this->assertTrue($this->payplugConfigProvider->hasPaymentConfig('payplug_1'));
     }
 }

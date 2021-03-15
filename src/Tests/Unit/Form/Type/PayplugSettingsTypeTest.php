@@ -35,7 +35,7 @@ class PayplugSettingsTypeTest extends FormIntegrationTestCase
     /**
      * {@inheritDoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->translator = $this->createMock(TranslatorInterface::class);
         $this->encoder = $this->createMock(SymmetricCrypterInterface::class);

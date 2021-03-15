@@ -24,8 +24,6 @@ class PayplugPaymentExtensionTest extends ExtensionTestCase
             'payplug.factory.method.payplug',
             'payplug.payment_method_provider.payplug',
             'payplug.datagrid.order_payment_transactions.action_permission_provider',
-            'payplug_bundle_payment.service.logger',
-            'payplug_bundle_payment.service.anonymizer',
         ];
         $this->assertDefinitionsLoaded($expectedDefinitions);
 

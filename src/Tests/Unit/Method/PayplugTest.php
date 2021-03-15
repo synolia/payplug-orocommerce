@@ -26,21 +26,12 @@ class PayplugTest extends \PHPUnit\Framework\TestCase
      */
     private $method;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->config = $this->createMock(PayplugConfigInterface::class);
         $this->gateway = $this->createMock(Gateway::class);
 
         $this->method = new Payplug($this->config, $this->gateway);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testExecuteWrongAction()
-    {
-        $paymentTransaction = $this->createMock(PaymentTransaction::class);
-        $this->method->execute(Payplug::PENDING, $paymentTransaction);
     }
 
     public function testGetIdentifier()
