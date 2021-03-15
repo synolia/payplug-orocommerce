@@ -2,17 +2,17 @@
 
 namespace Payplug\Bundle\PaymentBundle\Method\Config\Provider;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Payplug\Bundle\PaymentBundle\Entity\PayplugSettings;
 use Payplug\Bundle\PaymentBundle\Entity\Repository\PayplugSettingsRepository;
 use Payplug\Bundle\PaymentBundle\Method\Config\Factory\PayplugConfigFactoryInterface;
 use Payplug\Bundle\PaymentBundle\Method\Config\PayplugConfigInterface;
 use Psr\Log\LoggerInterface;
+use Oro\Bundle\EntityBundle\ORM\Registry;
 
 class PayplugConfigProvider implements PayplugConfigProviderInterface
 {
     /**
-     * @var ManagerRegistry
+     * @var Registry
      */
     protected $doctrine;
 
@@ -32,7 +32,7 @@ class PayplugConfigProvider implements PayplugConfigProviderInterface
     protected $logger;
 
     public function __construct(
-        ManagerRegistry $doctrine,
+        Registry $doctrine,
         LoggerInterface $logger,
         PayplugConfigFactoryInterface $configFactory
     ) {

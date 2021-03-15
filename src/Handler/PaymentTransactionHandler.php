@@ -2,7 +2,7 @@
 
 namespace Payplug\Bundle\PaymentBundle\Handler;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Oro\Bundle\EntityBundle\ORM\Registry;
 use Oro\Bundle\PaymentBundle\Entity\PaymentTransaction;
 use Oro\Bundle\PaymentBundle\Method\Provider\PaymentMethodProviderInterface;
 use Payplug\Bundle\PaymentBundle\Service\RefundManager;
