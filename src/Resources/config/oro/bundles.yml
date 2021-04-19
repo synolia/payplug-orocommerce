@@ -1,2 +1,2 @@
 bundles:
-    - { name: Payplug\Bundle\PaymentBundle\PayplugPaymentBundle, priority: 5 }
+    - { name: Payplug\Bundle\PaymentBundle\PayplugPaymentBundle, priority: 50 }
